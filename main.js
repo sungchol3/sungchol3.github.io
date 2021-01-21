@@ -37,6 +37,6 @@ pianoElList.forEach(el => {
 document.querySelector('img').addEventListener('touchstart', function(ev) {
   for (var index = 0; index < ev.targetTouches.length; index++) {
     const element = ev.targetTouches.item(index);
-    alert(element);
+    alert(element.target);
   }
 }, false);
