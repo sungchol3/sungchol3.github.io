@@ -34,9 +34,9 @@ pianoElList.forEach(el => {
 
 //Touch Event Handling
 document.querySelector('button').addEventListener('touchstart', function(ev) {
-  for (var index = 0; index < ev.targetTouches.length-1; index++) {
-    const element = ev.targetTouches[index].target;
-    alert(index);
+  ev.preventDefault();
+  for (var index = 0; index < ev.targetTouches.length; index++) {
+    const element = ev.target;
     alert(element);
   }
 }, false);
