@@ -1,66 +1,67 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Synth Drum</title>
-    <link rel="stylesheet" href="main.css" />
-  </head>
-  <body>
-    <h1>타악기 연주하기</h1>
-    <section>
-      <ul>
-        <li data-key="65" class="key">
-          <button onclick="clickSound(this)"><img src="image/castanets.png" alt="castanets image"></button>
-        </li>
-        <li data-key="83" class="key">
-          <button onclick="clickSound(this)"><img src="image/tambourine.png" alt="tambourine image"></button>
-        </li>
-        <li data-key="68" class="key">
-          <button onclick="clickSound(this)"><img src="image/Sogo.png" alt="Sogo image"></button>
-        </li>
-        <li data-key="70" class="key">
-          <button onclick="clickSound(this)"><img src="image/Kung.png" alt="Gangu left image"></button>
-        </li>
-        <li data-key="71" class="key">
-          <button onclick="clickSound(this)"><img src="image/Dung.png" alt="Gangu right image"></button>
-        </li>
-        <li data-key="72" class="key">
-          <button onclick="clickSound(this)"><img src="image/Ggangari.png" alt="꽹과리 image"></button>
-        </li>
-        <li data-key="74" class="key">
-          <button onclick="clickSound(this)"><img src="image/Ging.png" alt="징 image"></button>
-        </li>
-        <li data-key="75" class="key">
-          <button onclick="clickSound(this)"><img src="image/Buck.png" alt="북 image"></button>
-        </li>
-        <li data-key="76" class="key">
-          <button onclick="clickSound(this)">L</button>
-        </li>
-        <li data-key="186" class="key">
-          <button onclick="clickSound(this)">;</button>
-        </li>
-        <li data-key="222" class="key">
-          <button onclick="clickSound(this)">'</button>
-        </li>
-      </ul>
-    </section>
-    <!-- <footer>
-      <p><a href="../">Back to List</a></p>
-      <p><a href="https://javascript30.com/">Javascript30</a> Day1</p>
-    </footer> -->
-    <audio data-key="65" src="sound/castabets.mp3"></audio>
-    <audio data-key="83" src="sound/tambourine.mp3"></audio>
-    <audio data-key="68" src="sound/Sogo.mp3"></audio>
-    <audio data-key="70" src="sound/Kung_1.wav"></audio>
-    <audio data-key="71" src="sound/duck_1.wav"></audio>
-    <audio data-key="72" src="sound/Ggangari.wav"></audio>
-    <audio data-key="74" src="sound/Ging.wav"></audio>
-    <audio data-key="75" src="sound/Buck.wav"></audio>
-    <audio data-key="76" src="sound/8.mp3"></audio>
-    <audio data-key="186" src="sound/9.mp3"></audio>
-    <audio data-key="222" src="sound/10.mp3"></audio>
-    <script src="main.js"></script>
-  </body>
-</html>
+playSound = e => {
+  const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
+  const key = document.querySelector(`li[data-key="${e.keyCode}"]`);
+  if (audio) {
+    audio.currentTime = 0; // 처음으로 되돌리기
+    audio.play();
+    key.classList.add("playing");
+  }
+};
+
+function clickSound(arg){
+    const key = arg.parentNode;
+    var keyCode = key.getAttribute('data-key');
+    const audio = document.querySelector('audio[data-key="'+keyCode+'"]');
+    if (audio) {
+        audio.currentTime = 0; // 처음으로 되돌리기
+        audio.play();
+        key.classList.add("playing");
+    }
+}
+
+removeTransition = e => {
+  if (e.propertyName === "transform") {
+    e.target.classList.remove("playing");
+  }
+};
+
+window.addEventListener("keydown", playSound);
+
+const pianoElList = document.querySelectorAll("li");
+pianoElList.forEach(el => {
+  el.addEventListener("transitionend", removeTransition);
+});
+
+var bStartEvent = false;
+//touchstart 이벤트 발생 여부 플래그
+var bMoveEvent = false;
+//touchmove 이벤트 발생 여부 플래그
+ 
+
+document.querySelector('button').addEventListener("touchstart", this.onStart.bind(this), false);
+document.querySelector('button').addEventListener("touchmove", this.onMove.bind(this), false);
+document.querySelector('button').addEventListener("touchend", this.onEnd.bind(this), false);
+ 
+function onStart(e) {
+    bStartEvent = true;
+}
+ 
+function onMove(e) {
+    
+    if(!bStartEvent) {
+        return;
+        //touchstart 이벤트가 발생하지 않으면 처리하지 않는다.
+    }
+    bMoveEvent = true;
+    //touchMove 이벤트 발생 여부를 설정한다.
+}
+ 
+function onEnd(e) {
+    if(bStartEvent && !bMoveEvent) {
+        //클릭 이벤트로 판단한다.
+        alert(e);
+    }
+    //각 플래그 값을 초기값으로 설정한다.
+    bStartEvent = false;
+    bMoveEvent = false;
+}
