@@ -39,9 +39,9 @@ var bMoveEvent = false;
 //touchmove 이벤트 발생 여부 플래그
  
 
-document.querySelector('button').addEventListener("touchstart", this.onStart.bind(this), false);
-document.querySelector('button').addEventListener("touchmove", this.onMove.bind(this), false);
-document.querySelector('button').addEventListener("touchend", this.onEnd.bind(this), false);
+document.addEventListener("touchstart", this.onStart.bind(this), false);
+document.addEventListener("touchmove", this.onMove.bind(this), false);
+document.addEventListener("touchend", this.onEnd.bind(this), false);
  
 function onStart(e) {
     bStartEvent = true;
