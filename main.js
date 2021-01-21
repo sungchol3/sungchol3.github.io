@@ -9,6 +9,7 @@ playSound = e => {
 };
 
 function clickSound(arg){
+    alert('change');
     const key = arg.parentNode;
     var keyCode = key.getAttribute('data-key');
     const audio = document.querySelector('audio[data-key="'+keyCode+'"]');
