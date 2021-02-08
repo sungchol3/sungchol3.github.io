@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" name="castanets animation">
+    <title>Castanets Animation</title>
+    <style>
+        body {
+            text-align: center;
+        }
+        img {
+            width: 33vw;
+            object-fit: cover;
+        }
+        #castanets:active, #castanets.playing {
+            content: url(image/castanets2_close.png);
+        }
+        #tambourine:active, #tambourine.playing {
+            content: url(image/tambourine_tick.png);
+        }
+        #triangle:active, #triangle.playing {
+            content: url(image/triangle_close.png);
+        }
+        #maracas{
+            transition: 0.5s;
+        }
+        #maracas:active, #maracas.playing{
+            transform: rotate(-0.1turn);
+        }
+        #cymbals:active, #cymbals.playing{
+            content: url(image/cymbals_close.png);
+        }
+        table{
+            width: 100%;
+            height: 50%;
+        }
+        td {
+            text-align: center;
+            /* border: 1px solid #000000; */
+        }
+    </style>
+</head>
+<body>
+<h1>타악기 연주하기</h1>
+<h3>각 악기를 클릭하거나 A,S,D,F,G 키를 이용하여 타악기를 연주해 봅시다</h3>
+<table>
+    <tr>
+        <td colspan="2"><img id="castanets" src="image/castanets2_open.png" data-key="65" onclick="clickSound(this);"></td>
+        <td colspan="2"><img id="triangle" src="image/triangle_open.png" data-key="68" onclick="clickSound(this);"></td>
+        <td colspan="2"><img id="cymbals" src="image/cymbals_open.png" data-key="71" onclick="clickSound(this);"></td>
+    </tr>
+    <tr>
+        <td colspan="3"><img id="tambourine" src="image/tambourine.png" data-key="83" onclick="clickSound(this);"></td>
+        <td colspan="3"><img id="maracas" src="image/maracas.png" data-key="70" onclick="clickSound(this);"></td>
+    </tr>
+</table>
+
+<audio data-key="65" src="sound/castanets.mp3"></audio>
+<audio data-key="83" src="sound/tambourine.mp3"></audio>
+<audio data-key="68" src="sound/triangle.wav"></audio>
+<audio data-key="70" src="sound/maracas.wav"></audio>
+<audio data-key="71" src="sound/cymbals.wav"></audio>
+<script src="main.js"></script>
+</body>
+</html>
