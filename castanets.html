@@ -21,10 +21,19 @@
             content: url(image/triangle_close.png);
         }
         #maracas{
-            transition: 0.5s;
+
+        }
+        @keyframes maracas_animation {
+            0% { transform: rotate(0deg); }
+            33% { transform: rotate(-10deg); }
+            66% { transform: rotate(10deg); }
+            100% { transform: rotate(0deg); }
         }
         #maracas:active, #maracas.playing{
-            transform: rotate(-0.1turn);
+            animation-name: maracas_animation;
+            animation-duration: 300ms;
+            animation-iteration-count: infinite;
+            animation-timing-function: ease-in-out;
         }
         #cymbals:active, #cymbals.playing{
             content: url(image/cymbals_close.png);
@@ -38,8 +47,23 @@
             /* border: 1px solid #000000; */
         }
     </style>
+    <script>
+        function checkPC() {
+            // check PC or mobile
+            // if mobile, then alert message to use PC
+            var isMobile = false;
+            var filter = "win16|win32|win64|mac";
+
+            if (navigator.platform) {
+                isMobile = filter.indexOf(navigator.platform.toLowerCase()) < 0;
+            }
+            if (isMobile) {
+                alert('Mobile에는 최적화 되어있지 않습니다. PC를 이용해주세요.');
+            }
+        }
+    </script>
 </head>
-<body>
+<body onload="checkPC();">
 <h1>타악기 연주하기</h1>
 <h3>각 악기를 클릭하거나 A,S,D,F,G 키를 이용하여 타악기를 연주해 봅시다</h3>
 <table>
