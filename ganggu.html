@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" name="ganggu">
+    <title>Ganggu Animation</title>
+    <style>
+        body {
+            text-align: center;
+        }
+        *reset*
+        *{margin: 0; padding: 0;}
+        .box {
+            position: relative;
+            width: 60%;
+            /* border: 1px solid #000000; */
+            text-align: center;
+        }
+        img {
+            position: absolute;
+        }
+        #Ganggu {
+            width: 40vw;
+        }
+        #Kung_stick {
+            width: 20vw;
+            top: 15vw;
+            left: 18vw;
+            transform: rotate(-30deg);
+            transition: left 0.2s, transform 0.2s;
+            cursor: pointer;
+        }
+        #Kung_stick:active, #Kung_stick.playing {
+            transform: rotate(0);
+            left: 24vw;
+        }
+        #Duck_stick {
+            width: 20vw;
+            top: 15vw;
+            left: 60vw;
+            transform: rotate(30deg);
+            transition: left 0.2s, transform 0.2s;
+            cursor: pointer;
+        }
+        #Duck_stick:active, #Duck_stick.playing {
+            transform: rotate(0);
+            left: 55vw;
+        }
+        @keyframes giduck_animation {
+            0% { transform: rotate(0deg);}
+            20% { transform: rotate(-30deg);}
+            40% { transform: rotate(30deg);}
+            100% { transform: rotate(0); left: 55vw;}
+        }
+        #Duck_stick.dbplaying {
+            animation-name: giduck_animation;
+            animation-duration: 600ms;
+            animation-iteration-count: initial;
+        }
+        @keyframes dururu_animation {
+            0% {}
+            12.5% { transform: rotate(0deg); left: 55vw;}
+            25% { transform: rotate(20deg); left: 60vw;}
+            37.5% { transform: rotate(0deg); left: 55vw;}
+            50% { transform: rotate(10deg); left: 60vw;}
+            67.5% { transform: rotate(0deg); left: 55vw;}
+            75% { transform: rotate(5deg); left: 58vw;}
+            87.5% { transform: rotate(0deg); left: 55vw;}
+            100% { transform: rotate(0deg); left: 55vw;}
+        }
+        #Duck_stick.triplaying {
+            animation-name: dururu_animation;
+            animation-duration: 600ms;
+        }
+    </style>
+    <script>
+        function checkPC() {
+            // check PC or mobile
+            // if mobile, then alert message to use PC
+            var isMobile = false;
+            var filter = "win16|win32|win64|mac";
+
+            if (navigator.platform) {
+                isMobile = filter.indexOf(navigator.platform.toLowerCase()) < 0;
+            }
+            if (isMobile) {
+                alert('Mobile에는 최적화 되어있지 않습니다. PC를 이용해주세요.');
+            }
+        }
+    </script>
+</head>
+<body onload="checkPC();">
+<h1>장구 연주하기</h1>
+<h3>각 장구채를 클릭하거나 G,H,J,U 키를 이용하여 타악기를 연주해 봅시다</h3>
+<br>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/lwBEyRD1nq4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<div class="box">
+    <img src="image/Kung_stick.png" id="Kung_stick" data-key="71" onclick="clickSound(this);">
+    <img src="image/Dung_stick.png" id="Duck_stick" data-key="72" ondblclick="dbclickSound(this,74);" onclick="clickSound(this);">
+    <img src="image/Gangu.png" id="Ganggu">
+</div>
+<br>
+<audio data-key="71" src="sound/Kung_1.wav"></audio>
+<audio data-key="72" src="sound/duck_1.wav"></audio>
+<audio data-key="74" src="sound/giduck.wav"></audio>
+<audio data-key="85" src="sound/Durururu.wav"></audio>
+<script src="ganggu.js"></script>
+</body>
+</html>
