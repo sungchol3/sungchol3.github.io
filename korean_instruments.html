@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" name="castanets animation">
+    <title>Castanets Animation</title>
+    <style>
+        body {
+            text-align: center;
+        }
+        img {
+            width: 30vmin;
+            height: 30vmin;
+            /* object-fit: cover; */
+            cursor: pointer;
+        }
+        #ggangari:active, #ggangari.playing {
+            content: url(image/Ggangari_close.png);
+        }
+        #kung:active, #kung.playing {
+            content: url(image/Kung_close.png);
+        }
+        #duck:active, #duck.playing {
+            content: url(image/Duck_close.png);
+        }
+        #buck:active, #buck.playing {
+            content: url(image/Buck_close.png);
+        }
+        #sogo:active, #sogo.playing {
+            content: url(image/Sogo_close.png);
+        }
+        #ging:active, #ging.playing {
+            content: url(image/Ging_close.png);
+        }
+        table{
+            width: 90%;
+            height: 50%;
+        }
+        td {
+            text-align: center;
+            /* border: 1px solid #000000; */
+        }
+    </style>
+    <script>
+        function checkPC() {
+            // check PC or mobile
+            // if mobile, then alert message to use PC
+            var isMobile = false;
+            var filter = "win16|win32|win64|mac";
+
+            if (navigator.platform) {
+                isMobile = filter.indexOf(navigator.platform.toLowerCase()) < 0;
+            }
+            if (isMobile) {
+                alert('Mobile에는 최적화 되어있지 않습니다. PC를 이용해주세요.');
+            }
+        }
+    </script>
+</head>
+<body onload="checkPC();">
+<h1>국악기 연주하기</h1>
+<h3>각 악기를 클릭하거나 A,S,D,F,G,H 키를 이용하여 타악기를 연주해 봅시다</h3>
+<table>
+    <tr>
+        <td colspan="2"><img id="ggangari" src="image/Ggangari_open.png" data-key="65" onclick="clickSound(this);"></td>
+        <td colspan="2">
+            <img id="kung" src="image/Kung_open.png" data-key="68" onclick="clickSound(this);">
+            <img id="duck" src="image/Duck_open.png" data-key="70" style="margin: 0.65vmin -0.6vmin;" onclick="clickSound(this)">
+        </td>
+        <td colspan="2"><img id="buck" src="image/Buck.png" data-key="72" onclick="clickSound(this);"></td>
+    </tr>
+    <tr>
+        <td colspan="3"><img id="sogo" src="image/Sogo_open.png" data-key="83" onclick="clickSound(this);"></td>
+        <td colspan="3"><img id="ging" src="image/Ging.png" data-key="71" onclick="clickSound(this);"></td>
+    </tr>
+</table>
+
+<audio data-key="65" src="sound/Ggangari.wav"></audio>
+<audio data-key="83" src="sound/Sogo.mp3"></audio>
+<audio data-key="68" src="sound/Kung_1.wav"></audio>
+<audio data-key="70" src="sound/duck_1.wav"></audio>
+<audio data-key="71" src="sound/Ging.wav"></audio>
+<audio data-key="72" src="sound/Buck.wav"></audio>
+<script src="main.js"></script>
+</body>
+</html>
